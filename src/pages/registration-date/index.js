@@ -70,18 +70,28 @@ const Index = () => {
               <h3 className="text-[#868EAB] dark:text-gray-200">
                 Boshlanish vaqti:
               </h3>
-              <p className="text-[#1C1C1C] dark:text-white">
-                {dayjs(get(item, "start_date", "")).format("DD.MM.YYYY")}
-              </p>
+              <div className="flex gap-x-[10px] items-center">
+                <p className="text-[#1C1C1C] dark:text-white">
+                  {dayjs(get(item, "start_date", "")).format("DD.MM.YYYY")}{" "}
+                </p>
+                <p className="text-sm">
+                  {dayjs(get(item, "start_date", "")).format("HH:mm")}
+                </p>
+              </div>
             </div>
 
             <div className="flex gap-x-[15px] mt-[15px]">
               <h3 className="text-[#868EAB] dark:text-gray-200">
                 Tugash vaqti:
               </h3>
-              <p className="text-[#1C1C1C] dark:text-white">
-                {dayjs(get(item, "end_date", "")).format("DD.MM.YYYY")}
-              </p>
+              <div className="flex gap-x-[10px] items-center">
+                <p className="text-[#1C1C1C] dark:text-white">
+                  {dayjs(get(item, "end_date", "")).format("DD.MM.YYYY")}
+                </p>
+                <p className="text-sm">
+                  {dayjs(get(item, "end_date", "")).format("HH:mm")}
+                </p>
+              </div>
             </div>
             <button
               onClick={() => setIsOpen(true)}
@@ -105,7 +115,7 @@ const Index = () => {
                 Boshlanish vaqti:
               </h3>
               <input
-                type="date"
+                type="datetime-local"
                 name="start_date"
                 value={dates.start_date}
                 onChange={handleChange}
@@ -117,7 +127,7 @@ const Index = () => {
                 Tugash vaqti
               </h3>
               <input
-                type="date"
+                type="datetime-local"
                 name="end_date"
                 value={dates.end_date}
                 onChange={handleChange}
