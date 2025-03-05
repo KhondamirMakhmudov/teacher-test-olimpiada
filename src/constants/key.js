@@ -1,0 +1,26 @@
+export const KEYS = {
+  login: "login",
+  register: "register",
+  studentProfile: "studentProfile",
+  olimpiadaQuizList: "olimpiadaQuizList",
+  quizTest: "quizTest",
+  submitAnswers: "submitAnswers",
+  recieveCode: "recieveCode",
+  resultQuiz: "resultQuiz",
+  resendSMSCode: "resendSMSCode",
+  forgetPassword: "forgetPassword",
+  resendSMSCodeForget: "resendSMSCodeForget",
+  registerDate: "registerDate",
+  faqs: "faqs",
+  networkings: "networkings",
+  documents: "documents",
+  ofertas: "ofertas",
+
+  // teacher
+  passedRegistration: "passedRegistration",
+  passedTest: "passedTest",
+  passedTestAll: "passedTestAll",
+  teacherQuiz: "teacherQuiz",
+  telegramBotUsersList: "telegramBotUsersList",
+  activeUsers: "activeUsers",
+};

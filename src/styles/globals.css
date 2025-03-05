@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+body {
+  color: #2a3547;
+  background: white;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+@font-face {
+  font-family: "Myriad Pro";
+  src: url("/fonts/MyriadPro-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-theme="dark"] body {
+  background: #202936ff;
+  color: #fff;
+}
+.cke_notification {
+  display: none !important;
+}
+
+/* Change editor background */
+.cke_editable {
+  background-color: #0ce26d !important;
+  font-family: "Arial", sans-serif !important;
+  font-size: 16px !important;
+  color: #333 !important;
+}
+
+.cke {
+  border: 1px solid #f7f7f7 !important;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Customize toolbar background */
+.cke_top {
+  background-color: #5d86fe !important;
+  color: white;
+}
+.cke_button {
+  color: white;
+  filter: grayscale(10%);
+}
+.cke_button:hover {
+  filter: none;
+}
+
+.quizzes {
+  display: relative;
+}
+
+.quizzes img {
+  mix-blend-mode: multiply;
+}
