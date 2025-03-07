@@ -36,7 +36,7 @@ const Index = () => {
     e.preventDefault();
     changeRegisterDate(
       {
-        url: "https://app.iq-math.uz/api/v1/student/register_date/update/1/",
+        url: "https://test.iq-math.uz/api/v1/student/register_date/update/1/",
         attributes: dates,
       },
       {

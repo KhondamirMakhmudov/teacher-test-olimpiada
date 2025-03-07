@@ -99,7 +99,7 @@ const Index = () => {
   });
 
   const handleDelete = (quizId) => {
-    deleteQuiz(`https://app.iq-math.uz/api/v1/quiz/quiz/delete/${quizId}/`);
+    deleteQuiz(`https://test.iq-math.uz/api/v1/quiz/quiz/delete/${quizId}/`);
   };
 
   const handlePageClick = ({ selected }) => {
@@ -151,7 +151,7 @@ const Index = () => {
   const handleEdit = (editQuizId) => {
     editQuizzes(
       {
-        url: `https://app.iq-math.uz/api/v1/quiz/quiz/update/${editQuizId}/`,
+        url: `https://test.iq-math.uz/api/v1/quiz/quiz/update/${editQuizId}/`,
         attributes: {}, // Bu yerga tahrir qilinadigan ma'lumotlarni qo'sh
       },
       {
@@ -171,7 +171,7 @@ const Index = () => {
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        "https://app.iq-math.uz/api/v1/quiz/quiz/add/",
+        "https://test.iq-math.uz/api/v1/quiz/quiz/add/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -208,7 +208,7 @@ const Index = () => {
   const handleUpdateSubmit = (quizId) => {
     editQuizzes(
       {
-        url: `https://app.iq-math.uz/api/v1/quiz/quiz/update/${quizId}/`,
+        url: `https://test.iq-math.uz/api/v1/quiz/quiz/update/${quizId}/`,
         attributes: editFormData, // 🔹 Foydalanuvchi kiritgan yangi ma'lumotlar
       },
       {

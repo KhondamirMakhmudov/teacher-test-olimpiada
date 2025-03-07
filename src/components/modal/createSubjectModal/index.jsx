@@ -24,7 +24,7 @@ const CreateSubjectModal = ({ isOpen, onClose }) => {
     const token = session.accessToken; // Tokenni olish
 
     const response = await fetch(
-      "https://app.iq-math.uz/api/v1/quiz/science/create/",
+      "https://test.iq-math.uz/api/v1/quiz/science/create/",
       {
         method: "POST",
         headers: {

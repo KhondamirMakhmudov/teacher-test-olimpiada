@@ -42,7 +42,7 @@ const Index = () => {
     const token = session.accessToken; // Tokenni olish
 
     const response = await fetch(
-      "https://app.iq-math.uz/api/v1/quiz/science/create/",
+      "https://test.iq-math.uz/api/v1/quiz/science/create/",
       {
         method: "POST",
         headers: {
@@ -69,14 +69,14 @@ const Index = () => {
   };
 
   const handleDelete = (quizId) => {
-    deleteQuiz(`https://app.iq-math.uz/api/v1/quiz/science/delete/${quizId}/`);
+    deleteQuiz(`https://test.iq-math.uz/api/v1/quiz/science/delete/${quizId}/`);
   };
 
   const handleOpenEditModal = async (quizId) => {
     const token = session.accessToken;
 
     const response = await fetch(
-      `https://app.iq-math.uz/api/v1/quiz/science/update/${quizId}/`,
+      `https://test.iq-math.uz/api/v1/quiz/science/update/${quizId}/`,
       {
         method: "PUT",
         headers: {
@@ -116,7 +116,7 @@ const Index = () => {
     const token = session.accessToken;
 
     const response = await fetch(
-      `https://app.iq-math.uz/api/v1/quiz/science/update/${selectedQuiz}/`,
+      `https://test.iq-math.uz/api/v1/quiz/science/update/${selectedQuiz}/`,
       {
         method: "PUT",
         headers: {
