@@ -26,4 +26,8 @@ export const URLS = {
   telegramBotUsersList: "/api/v1/quiz/telegram_user/list_view/",
   sendSms: "/api/v1/quiz/send_message_student/",
   activeUsers: "/api/active-users/",
+  resultAddStudent: "/api/v1/quiz/result_add_student/",
+  addStudent: "/api/v1/quiz/result_pass_exam_status/",
+  resultDeleteStudent: "/api/v1/quiz/result_pass_exam/",
+  filterStudentCount: "/api/v1/quiz/result_filter_student_count/1/",
 };

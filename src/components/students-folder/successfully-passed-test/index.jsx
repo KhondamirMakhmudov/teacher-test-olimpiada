@@ -255,7 +255,7 @@ const SuccessFullyPassedTest = () => {
             <th className="border border-gray-200 px-4 py-2">F.I.SH</th>
 
             <th className="border border-gray-200 px-4 py-2">Viloyat</th>
-            <th className="border border-gray-200 px-4 py-2">Tuman</th>
+            {/* <th className="border border-gray-200 px-4 py-2">Tuman</th>
             <th className="border border-gray-200 px-4 py-2">
               O&apos;quv dargohi
             </th>
@@ -265,7 +265,7 @@ const SuccessFullyPassedTest = () => {
             <th className="border border-gray-200 px-4 py-2">Kursi</th>
             <th className="border border-gray-200 px-4 py-2">
               Ta&apos;lim tili
-            </th>
+            </th> */}
             <th className="border border-gray-200 px-4 py-2">
               Tug&apos;ilgan sanasi
             </th>

@@ -23,4 +23,6 @@ export const KEYS = {
   teacherQuiz: "teacherQuiz",
   telegramBotUsersList: "telegramBotUsersList",
   activeUsers: "activeUsers",
+  resultAddStudent: "resultAddStudent",
+  resultDeleteStudent: "resultDeleteStudent",
 };
