@@ -30,4 +30,5 @@ export const URLS = {
   addStudent: "/api/v1/quiz/result_pass_exam_status/",
   resultDeleteStudent: "/api/v1/quiz/result_pass_exam/",
   filterStudentCount: "/api/v1/quiz/result_filter_student_count/1/",
+  stats: "/api/v1/student/stat/",
 };

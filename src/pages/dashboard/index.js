@@ -37,16 +37,27 @@ const Index = () => {
   });
 
   const {
+    data: stats,
+    isLoading: isLoadingStats,
+    isFetching: isFetchingStats,
+  } = useGetQuery({
+    key: KEYS.stats,
+    url: URLS.stats,
+    headers: {
+      Authorization: `Bearer ${session?.accessToken}`,
+    },
+    enabled: !!session?.accessToken,
+  });
+
+  console.log("stats", get(stats, "data.telegram_user"));
+
+  const {
     data: passedRegistration,
     isLoading: isLoadingPassedRegistration,
     isFetching: isFetchingPassedRegistration,
   } = useGetQuery({
     key: KEYS.passedRegistration,
     url: URLS.passedRegistration,
-    headers: {
-      Authorization: `Bearer ${session?.accessToken}`,
-    },
-    enabled: !!session?.accessToken,
   });
 
   const {
@@ -58,10 +69,10 @@ const Index = () => {
     url: URLS.activeUsers,
   });
 
-  const { data: telegramBotUsersList } = useGetQuery({
-    key: KEYS.telegramBotUsersList,
-    url: URLS.telegramBotUsersList,
-  });
+  // const { data: telegramBotUsersList } = useGetQuery({
+  //   key: KEYS.telegramBotUsersList,
+  //   url: URLS.telegramBotUsersList,
+  // });
   return (
     <Dashboard>
       <div className="grid grid-cols-12 gap-6 my-6 md:my-10">
@@ -88,13 +99,12 @@ const Index = () => {
             <div className="flex flex-wrap gap-8">
               <div className="flex flex-col items-start">
                 <div className="flex items-center gap-2">
-                  {isLoadingPassedRegistration ||
-                  isFetchingPassedRegistration ? (
+                  {isLoadingStats || isFetchingStats ? (
                     <SimpleLoader />
                   ) : (
                     <div className="text-4xl font-semibold text-black dark:text-white">
                       <CountUp
-                        end={get(passedRegistration, "data")?.length || 0}
+                        end={get(stats, "data.register_student")}
                         duration={3}
                       />
                     </div>
@@ -159,7 +169,7 @@ const Index = () => {
           <div className="relative text-center text-white">
             <div className="text-3xl font-semibold">
               <CountUp
-                end={get(telegramBotUsersList, "data", []).length || 0}
+                end={get(stats, "data.telegram_user", [])}
                 duration={3}
               />
             </div>
@@ -184,7 +194,7 @@ const Index = () => {
                 isLoadingPassedRegistration || isFetchingPassedRegistration ? (
                   <SimpleLoader />
                 ) : (
-                  get(passedRegistration, "data")?.length
+                  get(stats, "data.register_student")
                 )
               }
             />

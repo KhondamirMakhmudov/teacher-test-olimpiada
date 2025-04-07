@@ -27,12 +27,16 @@ const TableWithPagination = () => {
   } = useGetQuery({
     key: KEYS.passedRegistration,
     url: URLS.passedRegistration,
+    params: {
+      limit: itemsPerPage,
+      offset: currentPage * itemsPerPage,
+    },
     headers: {
       Authorization: `Bearer ${session?.accessToken}`,
     },
     enabled: !!session?.accessToken,
   });
-  const reversedData = get(passedRegistration, "data", []).slice().reverse();
+  // const reversedData = get(passedRegistration, "data", []).slice().reverse();
 
   const items = get(passedRegistration, "data", []);
 
@@ -93,36 +97,36 @@ const TableWithPagination = () => {
     setIsDropdownOpen(false);
   };
 
-  const filteredItems = reversedData.filter((item) =>
-    Object.values(item).some((value) =>
-      String(value).toLowerCase().includes(searchQuery)
-    )
-  );
+  // const filteredItems = reversedData.filter((item) =>
+  //   Object.values(item).some((value) =>
+  //     String(value).toLowerCase().includes(searchQuery)
+  //   )
+  // );
 
-  const offset = currentPage * itemsPerPage;
-  const currentItems = filteredItems.slice(offset, offset + itemsPerPage);
-  const pageCount = Math.ceil(filteredItems.length / itemsPerPage);
+  // const offset = currentPage * itemsPerPage;
+  // const currentItems = filteredItems.slice(offset, offset + itemsPerPage);
+  // const pageCount = Math.ceil(filteredItems.length / itemsPerPage);
 
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+  // const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
-  const handleSort = (key) => {
-    let direction = "asc";
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
+  // const handleSort = (key) => {
+  //   let direction = "asc";
+  //   if (sortConfig.key === key && sortConfig.direction === "asc") {
+  //     direction = "desc";
+  //   }
+  //   setSortConfig({ key, direction });
+  // };
 
-  const sortedItems = [...currentItems].sort((a, b) => {
-    if (!sortConfig.key) return 0;
+  // const sortedItems = [...currentItems].sort((a, b) => {
+  //   if (!sortConfig.key) return 0;
 
-    const valueA = get(a, sortConfig.key, "").toString().toLowerCase();
-    const valueB = get(b, sortConfig.key, "").toString().toLowerCase();
+  //   const valueA = get(a, sortConfig.key, "").toString().toLowerCase();
+  //   const valueB = get(b, sortConfig.key, "").toString().toLowerCase();
 
-    if (valueA < valueB) return sortConfig.direction === "asc" ? -1 : 1;
-    if (valueA > valueB) return sortConfig.direction === "asc" ? 1 : -1;
-    return 0;
-  });
+  //   if (valueA < valueB) return sortConfig.direction === "asc" ? -1 : 1;
+  //   if (valueA > valueB) return sortConfig.direction === "asc" ? 1 : -1;
+  //   return 0;
+  // });
 
   return (
     <div className="border overflow-hidden rounded-md  p-[30px] w-full">
@@ -139,7 +143,7 @@ const TableWithPagination = () => {
           <div className="flex gap-x-[5px]">
             <UserStudentIcon color="#7C8FAC" />
             <p className="text-[#7C8FAC]">
-              {get(passedRegistration, "data", [])?.length}
+              {get(passedRegistration, "data.count", [])}
             </p>
           </div>
           <div className="relative">
@@ -215,7 +219,7 @@ const TableWithPagination = () => {
                   >
                     <div className="flex justify-between items-center">
                       <p>{column.label}</p>
-                      <span>
+                      {/* <span>
                         {sortConfig.direction === "asc" ? (
                           <Image
                             src={"/images/sort.png"}
@@ -231,65 +235,67 @@ const TableWithPagination = () => {
                             height={10}
                           />
                         )}
-                      </span>
+                      </span> */}
                     </div>
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {sortedItems.map((item, index) => (
-                <tr
-                  key={index}
-                  className="odd:bg-gray-100 dark:odd:bg-[#455874] dark:text-white text-black"
-                >
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {offset + index + 1}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "full_name", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "document_type", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "document", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "region", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "districts", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "address", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "academy_or_school", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "academy_or_school_name", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "class_name", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "type_of_education", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "brithday", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    +{get(item, "phone", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "student_date", "")}
-                  </td>
-                  <td className="border border-gray-200 px-4 py-2 text-center text-sm">
-                    {get(item, "student_time", "")}
-                  </td>
-                </tr>
-              ))}
+              {get(passedRegistration, "data.results", []).map(
+                (item, index) => (
+                  <tr
+                    key={index}
+                    className="odd:bg-gray-100 dark:odd:bg-[#455874] dark:text-white text-black"
+                  >
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {index + 1}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "full_name", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "document_type", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "document", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "region", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "districts", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "address", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "academy_or_school", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "academy_or_school_name", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "class_name", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "type_of_education", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "brithday", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      +{get(item, "phone", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "student_date", "")}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 text-center text-sm">
+                      {get(item, "student_time", "")}
+                    </td>
+                  </tr>
+                )
+              )}
             </tbody>
           </table>
         </div>
@@ -305,7 +311,9 @@ const TableWithPagination = () => {
         }
         nextLabel={<RightIcon color={theme === "light" ? "black" : "white"} />}
         breakLabel={"..."}
-        pageCount={pageCount}
+        pageCount={Math.ceil(
+          get(passedRegistration, "data.count", []) / itemsPerPage
+        )}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={handlePageClick}

@@ -25,4 +25,5 @@ export const KEYS = {
   activeUsers: "activeUsers",
   resultAddStudent: "resultAddStudent",
   resultDeleteStudent: "resultDeleteStudent",
+  stats: "stats",
 };
